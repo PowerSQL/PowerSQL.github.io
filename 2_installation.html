@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PowerSQL - PowerSQL</title>
+        <title>Installation - PowerSQL</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_powersql.html"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="2_installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_powersql.html"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="2_installation.html" class="active"><strong aria-hidden="true">2.</strong> Installation</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,29 +155,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#powersql" id="powersql">PowerSQL</a></h1>
-<p>PowerSQL is an open source <strong>data transformation</strong> tool built for data analysts, engineers and scientists.</p>
-<p>It utilizes the full power of SQL, so you can focus on improving the data and transforming the data to your needs.</p>
-<p>PowerSQL helps you improving the quality of your data and code in the following ways:</p>
-<ul>
-<li>Automatic syntax and type checks based on your code. This helps mistakes from reaching</li>
-<li>Expressive data tests using <code>ASSERT</code>-tests.</li>
-<li>Pure SQL, makes it easy to integrate with existing tooling like formatters and </li>
-</ul>
-<p>PowerSQL currently supports BigQuery and PostgreSQL as backends. </p>
-<p>PowerSQL is fully open source, you can find it on
-<a href="https://github.com/Dandandan/PowerSQL">GitHub</a></p>
+                        <h1><a class="header" href="#installation" id="installation">Installation</a></h1>
+<p>PowerSQL is primarily used as a command line tool. The current distribution is via a rust <em>crate</em>. For this you need first to install the build tool <a href="https://www.rust-lang.org/tools/install">Cargo</a>:</p>
+<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+<p>Then install PowerSQL like this for BigQuery:</p>
+<pre><code>cargo install powersql --features bigquery
+</code></pre>
+<p>Or install PowerSQL like this for PostgreSQL:</p>
+<pre><code>cargo install powersql --features postgres
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-
-                        
-                            <a rel="next" href="2_installation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="1_powersql.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+                        
+
                         
 
                         <div style="clear: both"></div>
@@ -187,11 +185,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-
-                
-                    <a rel="next" href="2_installation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="prev" href="1_powersql.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+                
+
                 
             </nav>
 

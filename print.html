@@ -3,7 +3,9 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PowerSQL - PowerSQL</title>
+        <title>PowerSQL</title>
+        
+        <meta name="robots" content="noindex" />
         
         
 
@@ -167,6 +169,16 @@
 <p>PowerSQL currently supports BigQuery and PostgreSQL as backends. </p>
 <p>PowerSQL is fully open source, you can find it on
 <a href="https://github.com/Dandandan/PowerSQL">GitHub</a></p>
+<h1><a class="header" href="#installation" id="installation">Installation</a></h1>
+<p>PowerSQL is primarily used as a command line tool. The current distribution is via a rust <em>crate</em>. For this you need first to install the build tool <a href="https://www.rust-lang.org/tools/install">Cargo</a>:</p>
+<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+<p>Then install PowerSQL like this for BigQuery:</p>
+<pre><code>cargo install powersql --features bigquery
+</code></pre>
+<p>Or install PowerSQL like this for PostgreSQL:</p>
+<pre><code>cargo install powersql --features postgres
+</code></pre>
 
                     </main>
 
@@ -174,10 +186,6 @@
                         <!-- Mobile navigation buttons -->
                         
 
-                        
-                            <a rel="next" href="2_installation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -188,10 +196,6 @@
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
 
-                
-                    <a rel="next" href="2_installation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
@@ -224,6 +228,14 @@
         <!-- Custom JS scripts -->
         
 
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
         
 
     </body>
