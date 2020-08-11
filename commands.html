@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Installation - PowerSQL</title>
+        <title>Commands - PowerSQL</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_powersql.html"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="2_installation.html" class="active"><strong aria-hidden="true">2.</strong> Installation</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="powersql.html"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="postgres.html"><strong aria-hidden="true">3.</strong> PostgreSQL</a></li><li class="chapter-item expanded "><a href="bigquery.html"><strong aria-hidden="true">4.</strong> BigQuery</a></li><li class="chapter-item expanded "><a href="commands.html" class="active"><strong aria-hidden="true">5.</strong> Commands</a></li><li class="chapter-item expanded "><a href="data_tests.html"><strong aria-hidden="true">6.</strong> Data Tests</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,27 +155,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#installation" id="installation">Installation</a></h1>
-<p>PowerSQL is primarily used as a command line tool. The current distribution is via a rust <em>crate</em>. For this you need first to install the build tool <a href="https://www.rust-lang.org/tools/install">Cargo</a>:</p>
-<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-</code></pre>
-<p>Then install PowerSQL like this for BigQuery:</p>
-<pre><code>cargo install powersql --features bigquery
-</code></pre>
-<p>Or install PowerSQL like this for PostgreSQL:</p>
-<pre><code>cargo install powersql --features postgres
-</code></pre>
+                        <h2><a class="header" href="#commands" id="commands">Commands</a></h2>
+<ul>
+<li><code>powersql check</code>: This will load all your <code>.sql</code> files in the directories listed in <code>models</code>. It will check the syntax of the SQL statements. After this, it will check the DAG and report if there is a circular dependency. Finally, it will run a type checker and report any type errors.</li>
+<li><code>powersql run</code>: Loads and runs the entire DAG of SQL statements.</li>
+<li><code>powersql test</code>: Loads and runs the data tests. By running <code>powersql test --fail-fast</code> powersql will stop at the first failure.</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="1_powersql.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="bigquery.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
+                        
+                            <a rel="next" href="data_tests.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -185,11 +185,15 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="1_powersql.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="bigquery.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
+                
+                    <a rel="next" href="data_tests.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 

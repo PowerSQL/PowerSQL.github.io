@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PowerSQL - PowerSQL</title>
+        <title>Data Tests - PowerSQL</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="1_powersql.html" class="active"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="2_installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="powersql.html"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="postgres.html"><strong aria-hidden="true">3.</strong> PostgreSQL</a></li><li class="chapter-item expanded "><a href="bigquery.html"><strong aria-hidden="true">4.</strong> BigQuery</a></li><li class="chapter-item expanded "><a href="commands.html"><strong aria-hidden="true">5.</strong> Commands</a></li><li class="chapter-item expanded "><a href="data_tests.html" class="active"><strong aria-hidden="true">6.</strong> Data Tests</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,29 +155,47 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#powersql" id="powersql">PowerSQL</a></h1>
-<p>PowerSQL is an open source <strong>data transformation</strong> tool built for data analysts, engineers and scientists.</p>
-<p>It utilizes the full power of SQL, so you can focus on improving the data and transforming the data to your needs.</p>
-<p>PowerSQL helps you improving the quality of your data and code in the following ways:</p>
-<ul>
-<li>Automatic syntax and type checks based on your code. This helps mistakes from reaching</li>
-<li>Expressive data tests using <code>ASSERT</code>-tests.</li>
-<li>Pure SQL, makes it easy to integrate with existing tooling like formatters and </li>
-</ul>
-<p>PowerSQL currently supports BigQuery and PostgreSQL as backends. </p>
-<p>PowerSQL is fully open source, you can find it on
-<a href="https://github.com/Dandandan/PowerSQL">GitHub</a></p>
+                        <h2><a class="header" href="#data-tests" id="data-tests">Data tests</a></h2>
+<p>Data tests are <code>ASSERT</code> statements that you can run on your database tables and views and perform checks on data quality, recency, etc. Assert statements checks the result of a condition - a boolean expression.
+Assert-based testing are enabled for every backend, they are translated by PowerSQL to queries return a
+boolean.</p>
+<p>Some examples:</p>
+<pre><code class="language-sql">-- Column should be NOT NULL
+ASSERT NOT EXISTS(
+  SELECT X
+  FROM t
+  WHERE column IS NULL
+) AS 'column should be non null';
+ASSERT NOT EXISTS (
+    SELECT quantity
+    FROM rev_per_product
+    WHERE quantity &lt;= 0
+) AS 'quantity should be positive';
+ASSERT NOT EXISTS (
+    SELECT product_id
+    FROM rev_per_product
+    WHERE product_id IS NULL
+) AS 'product_id should be not null';
+ASSERT (
+    SELECT COUNT (*)
+    FROM rev_per_product
+    WHERE quantity &lt; 10
+) &gt;= 0.7 * (    
+    SELECT COUNT(*)
+    FROM rev_per_product
+) AS 'At least 70% should have a quantity lower than 10'
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-
-                        
-                            <a rel="next" href="2_installation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="commands.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+                        
+
                         
 
                         <div style="clear: both"></div>
@@ -187,11 +205,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-
-                
-                    <a rel="next" href="2_installation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="prev" href="commands.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+                
+
                 
             </nav>
 

@@ -3,9 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>PowerSQL</title>
-        
-        <meta name="robots" content="noindex" />
+        <title>PowerSQL - PowerSQL</title>
         
         
 
@@ -91,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="powersql.html"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="postgres.html"><strong aria-hidden="true">3.</strong> PostgreSQL</a></li><li class="chapter-item expanded "><a href="bigquery.html"><strong aria-hidden="true">4.</strong> BigQuery</a></li><li class="chapter-item expanded "><a href="commands.html"><strong aria-hidden="true">5.</strong> Commands</a></li><li class="chapter-item expanded "><a href="data_tests.html"><strong aria-hidden="true">6.</strong> Data Tests</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="powersql.html" class="active"><strong aria-hidden="true">1.</strong> PowerSQL</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="postgres.html"><strong aria-hidden="true">3.</strong> PostgreSQL</a></li><li class="chapter-item expanded "><a href="bigquery.html"><strong aria-hidden="true">4.</strong> BigQuery</a></li><li class="chapter-item expanded "><a href="commands.html"><strong aria-hidden="true">5.</strong> Commands</a></li><li class="chapter-item expanded "><a href="data_tests.html"><strong aria-hidden="true">6.</strong> Data Tests</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,83 +167,6 @@ PowerSQL currently supports BigQuery and PostgreSQL as backends.</li>
 </ul>
 <p>PowerSQL is fully open source, you can find it on
 <a href="https://github.com/Dandandan/PowerSQL">GitHub</a></p>
-<h1><a class="header" href="#installation" id="installation">Installation</a></h1>
-<p>PowerSQL is primarily used as a command line tool. The current distribution is via a rust <em>crate</em>. For this you need first to install the build tool <a href="https://www.rust-lang.org/tools/install">Cargo</a>:</p>
-<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-</code></pre>
-<p>Then install PowerSQL like this for BigQuery:</p>
-<pre><code class="language-bash">cargo install powersql --features bigquery
-</code></pre>
-<p>Or install PowerSQL like this for PostgreSQL:</p>
-<pre><code class="language-bash">cargo install powersql --features postgres
-</code></pre>
-<h1><a class="header" href="#postgresql" id="postgresql">PostgreSQL</a></h1>
-<p>To get started with PostgreSQL, simply create a new project in a file called <code>powersql.toml</code>:</p>
-<pre><code>[project]
-name = &quot;my_project&quot;
-models = [&quot;models&quot;]
-tests = [&quot;tests]
-</code></pre>
-<p>Now create one or more models in the <code>models</code> directory:</p>
-<pre><code class="language-sql">CREATE VIEW my_model AS SELECT id, category from my_source;
-CREATE TABLE category_stats AS SELECT COUNT(*) category_count FROM my_model GROUP BY category;
-</code></pre>
-<p>PowerSQL automatically will create a DAG based on the relations in your database.</p>
-<p>To run against the database, provide the following environment variables:</p>
-<ul>
-<li>PG_HOSTNAME</li>
-<li>PG_USERNAME</li>
-<li>PG_PORT</li>
-<li>PG_DATABASE</li>
-<li>PG_PASSWORD</li>
-</ul>
-<h1><a class="header" href="#bigquery" id="bigquery">BigQuery</a></h1>
-<p>To run against the database, provide the following environment variables:</p>
-<ul>
-<li>GOOGLE_APPLICATION_CREDENTIALS</li>
-<li>PROJECT_ID</li>
-<li>DATASET_ID</li>
-<li>LOCATION</li>
-</ul>
-<p><code>GOOGLE_APPLICATION_CREDENTIALS</code> should refer to an service account key file (this can be set by an appliation rather than locally).</p>
-<p><code>PROJECT_ID</code> is the id (not number) of the project and <code>DATASET_ID</code> is the name of the dataset that is used by default.</p>
-<p><code>LOCATION</code> is an (optional) datacenter location id where the query is being executed.</p>
-<h2><a class="header" href="#commands" id="commands">Commands</a></h2>
-<ul>
-<li><code>powersql check</code>: This will load all your <code>.sql</code> files in the directories listed in <code>models</code>. It will check the syntax of the SQL statements. After this, it will check the DAG and report if there is a circular dependency. Finally, it will run a type checker and report any type errors.</li>
-<li><code>powersql run</code>: Loads and runs the entire DAG of SQL statements.</li>
-<li><code>powersql test</code>: Loads and runs the data tests. By running <code>powersql test --fail-fast</code> powersql will stop at the first failure.</li>
-</ul>
-<h2><a class="header" href="#data-tests" id="data-tests">Data tests</a></h2>
-<p>Data tests are <code>ASSERT</code> statements that you can run on your database tables and views and perform checks on data quality, recency, etc. Assert statements checks the result of a condition - a boolean expression.
-Assert-based testing are enabled for every backend, they are translated by PowerSQL to queries return a
-boolean.</p>
-<p>Some examples:</p>
-<pre><code class="language-sql">-- Column should be NOT NULL
-ASSERT NOT EXISTS(
-  SELECT X
-  FROM t
-  WHERE column IS NULL
-) AS 'column should be non null';
-ASSERT NOT EXISTS (
-    SELECT quantity
-    FROM rev_per_product
-    WHERE quantity &lt;= 0
-) AS 'quantity should be positive';
-ASSERT NOT EXISTS (
-    SELECT product_id
-    FROM rev_per_product
-    WHERE product_id IS NULL
-) AS 'product_id should be not null';
-ASSERT (
-    SELECT COUNT (*)
-    FROM rev_per_product
-    WHERE quantity &lt; 10
-) &gt;= 0.7 * (    
-    SELECT COUNT(*)
-    FROM rev_per_product
-) AS 'At least 70% should have a quantity lower than 10'
-</code></pre>
 
                     </main>
 
@@ -253,6 +174,10 @@ ASSERT (
                         <!-- Mobile navigation buttons -->
                         
 
+                        
+                            <a rel="next" href="installation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -263,6 +188,10 @@ ASSERT (
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
 
+                
+                    <a rel="next" href="installation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
@@ -295,14 +224,6 @@ ASSERT (
         <!-- Custom JS scripts -->
         
 
-        
-        
-        <script type="text/javascript">
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
-        
         
 
     </body>
